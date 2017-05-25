@@ -1,4 +1,12 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Compiladores</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">	
+</head>
+<body>
+	<?php
 	function analizar(){
 		$reglas[0][0]="S";
 		$reglas[0][1] = "CDC";
@@ -34,7 +42,8 @@
 		$reglas[10][1] = "m";
 
 		$inicioFin = "$";
-		$regla = "mhn$";
+		// $regla = "mhn$";
+		$regla = "mln$";
 
 		$pilaResult = array();
 		$posRegla = 0;
@@ -46,7 +55,7 @@
 			
 			if($pilaResult[$controlPila] != '$'){
 				if ($pilaResult[$controlPila] == $reglas[$i][1]) {
-					echo nl2br($pilaResult[$controlPila]." -> OK \n");
+					echo "<h1>".nl2br($pilaResult[$controlPila]." -> OK \n")."</h1>";
 					$pilaResult[$controlPila] = $reglas[$i][0];
 					$i = -1;
 				}
@@ -64,11 +73,17 @@
 				}
 			}else{
 				$i = 12;
-				echo "Sintaxis Correcta ".$pilaResult[1];
+				if($pilaResult[1]=="S"){
+					echo "<h3 class='black-text'>Sintaxis Correcta ".$pilaResult[1]."</h3>";
+				}else{
+					echo "<h3 class='grey-text'>Sintaxis Incorrecta ".$pilaResult[1]."</h3>";
+				}
 			}
 		}
 
 	}
 
 	analizar();
-?>
+	?>
+</body>
+</html>

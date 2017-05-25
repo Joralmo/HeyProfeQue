@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-ES">
 <head>
 	<meta charset="UTF-8">
-	<title>HeyProfeQue</title>
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">	
-</head>
-<body>
+	<title>Compiladores</title>
 	
-	<header class="red darken-3">
-		<div class="container">
-			<div class="row">
-				<div class="col s12">
-					<h1 class="white-text">Soy algo más</h1>
-					<h2 class="white-text">Coñooo e la male</h2>
-				</div>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+	<style>
+		input[type=text]:focus {
+	     border-bottom: 1px solid white !important;
+	     box-shadow: 0 1px 0 0 white !important;
+	   }
+
+	   input{
+	   		font-size: 1.5em !important;
+	   }
+
+		@keyframes animacion {
+			0%{color: #ffb74d;}
+			20%{color: #ffa726;}
+			50%{color: #ff9800;}
+			70%{color: #f57c00;}
+			95%{color: #ef6c00;}
+		}
+
+	   #contenido h1{
+	   		color: #ef6c00 !important;
+			animation-name: animacion;
+			animation-iteration-count: infinite;
+			animation-duration: 1s;
+			animation-direction: alternate-reverse;
+	   }
+	</style>
+</head>
+
+<body class="grey darken-4">
+	
+	<form action="!#" id="form">
+		<input type="text" placeholder="Ingresar regla" class="white-text" id="regla">
+	</form>
+	
+
+	<div id="contenido">
+		<div class="row">
+			<div class="col s6 offset-s3">
+				<h1>Esperando contenido</h1>	
 			</div>
 		</div>
-	</header>
+	</div>
 	
+	<script>
+		
+		$('#form').submit(function(e){
+			e.preventDefault();
+
+			$.ajax({
+				type:'GET',
+				url:'script.php',
+				data:{regla: $('#regla').val()},
+				success:function(data){
+					$('#contenido').html(data);
+				}
+
+			});
+		});
+	</script>
+
 </body>
 </html>

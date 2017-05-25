@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Compiladores</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">	
-</head>
-<body>
-	<?php
-	function analizar(){
+<?php
+	function analizar($regla){
+		
+		$regla = $regla.'$';
+
 		$reglas[0][0]="S";
 		$reglas[0][1] = "CDC";
 
@@ -42,8 +37,8 @@
 		$reglas[10][1] = "m";
 
 		$inicioFin = "$";
-		// $regla = "mhn$";
-		$regla = "mln$";
+		//$regla = "mhn$";
+		//$regla = "mln$";
 
 		$pilaResult = array();
 		$posRegla = 0;
@@ -55,7 +50,7 @@
 			
 			if($pilaResult[$controlPila] != '$'){
 				if ($pilaResult[$controlPila] == $reglas[$i][1]) {
-					echo "<h1>".nl2br($pilaResult[$controlPila]." -> OK \n")."</h1>";
+					echo "<h1 class='white-text'>".nl2br($pilaResult[$controlPila]." -> <span class='blue-text'>OK</span> \n")."</h1>";
 					$pilaResult[$controlPila] = $reglas[$i][0];
 					$i = -1;
 				}
@@ -74,16 +69,13 @@
 			}else{
 				$i = 12;
 				if($pilaResult[1]=="S"){
-					echo "<h3 class='black-text'>Sintaxis Correcta ".$pilaResult[1]."</h3>";
+					echo "<h3 class='green-text'>Sintaxis Correcta ".$pilaResult[1]."</h3>";
 				}else{
-					echo "<h3 class='grey-text'>Sintaxis Incorrecta ".$pilaResult[1]."</h3>";
+					echo "<h3 class='red-text'>Sintaxis Incorrecta ".$pilaResult[1]."</h3>";
 				}
 			}
 		}
-
 	}
 
-	analizar();
-	?>
-</body>
-</html>
+	analizar($_GET['regla']);
+?>
